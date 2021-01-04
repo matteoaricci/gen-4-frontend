@@ -47,12 +47,23 @@ const Navbar = props => {
         width={{ base: 'full', md: 'auto' }}
         alignItems="center"
         flexGrow={1}
-      ></Box>
+      >
+        <Link style={{ textDecoration: 'none' }} href="/newteam">
+          <Button bg="transparent" border="1px">
+            Make New Team
+          </Button>
+        </Link>
+      </Box>
 
       <Box
         display={{ base: show ? 'block' : 'none', md: 'block' }}
         mt={{ base: 4, md: 0 }}
       >
+        <Link style={{ textDecoration: 'none' }} href="/logout">
+          <Button bg="transparent" border="1px">
+            Logout
+          </Button>
+        </Link>
         <Link style={{ textDecoration: 'none' }} href="/login">
           <Button bg="transparent" border="1px">
             Login
