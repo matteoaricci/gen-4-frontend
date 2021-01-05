@@ -19,6 +19,8 @@ const typeColors = {
   rock: 'SaddleBrown',
   ghost: 'RebeccaPurple',
   ice: 'WhiteSmoke',
+  dragon: 'DarkSlateBlue',
+  fairy: 'LightPink'
 };
 
 const PokemonCard = props => {

@@ -28,7 +28,18 @@ class login extends Component {
   };
 
   handleOnSubmit = () => {
-    fetch('http://3000/login');
+    let username = this.state.username;
+    let password = this.state.password;
+    fetch('http://3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then(resp => resp.json())
+      .then(user => console.log(user));
   };
 
   render() {
@@ -64,9 +75,9 @@ class login extends Component {
               </Button>
             </form>
           </Box>
-        <Link style={{ textDecoration: 'none' }} href="/register">
-          <Button>Need to make an account?</Button>
-        </Link>
+          <Link style={{ textDecoration: 'none' }} href="/register">
+            <Button>Need to make an account?</Button>
+          </Link>
         </Box>
       </Flex>
     );

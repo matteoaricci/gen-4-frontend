@@ -48,27 +48,32 @@ const Navbar = props => {
         alignItems="center"
         flexGrow={1}
       >
-        <Link style={{ textDecoration: 'none' }} href="/newteam">
-          <Button bg="transparent" border="1px">
-            Make New Team
-          </Button>
-        </Link>
+        {props.loggedIn ? (
+          <Link style={{ textDecoration: 'none' }} href="/newteam">
+            <Button bg="transparent" border="1px">
+              Make New Team
+            </Button>
+          </Link>
+        ) : null}
       </Box>
 
       <Box
         display={{ base: show ? 'block' : 'none', md: 'block' }}
         mt={{ base: 4, md: 0 }}
       >
-        <Link style={{ textDecoration: 'none' }} href="/logout">
-          <Button bg="transparent" border="1px">
-            Logout
-          </Button>
-        </Link>
-        <Link style={{ textDecoration: 'none' }} href="/login">
-          <Button bg="transparent" border="1px">
-            Login
-          </Button>
-        </Link>
+        {props.loggedIn ? (
+          <Link style={{ textDecoration: 'none' }} href="/logout">
+            <Button bg="transparent" border="1px">
+              Logout
+            </Button>
+          </Link>
+        ) : (
+          <Link style={{ textDecoration: 'none' }} href="/login">
+            <Button bg="transparent" border="1px">
+              Login
+            </Button>
+          </Link>
+        )}
       </Box>
     </Flex>
   );

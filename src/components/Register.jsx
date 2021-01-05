@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {useHistory} from 'react-router-dom'
 import {
   Flex,
   Box,
@@ -26,8 +27,28 @@ class Register extends Component {
     });
   };
 
-  handleOnSubmit = () => {
-    fetch('http://3000/register');
+  handleOnSubmit = e => {
+    e.preventDefault();
+    fetch('http://localhost:3000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        "Access-Control-Allow-Credentials": true
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      }),
+    })
+      .then(resp => resp.json())
+      .then(user => {
+        if (user.logged_in) {
+          this.props.setLoggedIn(user.logged_in)
+          localStorage.setItem("logged_in", true)
+        }
+      });
   };
 
   render() {
@@ -38,7 +59,7 @@ class Register extends Component {
             <Heading>Register</Heading>
           </Box>
           <Box my={4} textAlign="left">
-            <form onSubmit={this.handleOnSubmit}>
+            <form onSubmit={e => this.handleOnSubmit(e)}>
               <FormControl>
                 <FormLabel>Username</FormLabel>
                 <Input

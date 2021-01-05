@@ -22,6 +22,20 @@ class NewTeam extends Component {
     this.setState({ newTeam: [...this.state.newTeam] });
   };
 
+  handleOnClick = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:3000/new_team', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Credentials': true
+      },
+      credentials: "include",
+      body: JSON.stringify({ message: 'Howdy!'})
+    })
+  }
+
   render() {
     return (
       <div>
@@ -39,7 +53,7 @@ class NewTeam extends Component {
           </Grid>
         </Box>
         <Center m='10'>
-          <Button>Make New Team</Button>
+          <Button onClick={(e) => this.handleOnClick(e)} >Make New Team</Button>
         </Center>
         <Pokemons clickPokemon={this.clickPokemon} />
       </div>
